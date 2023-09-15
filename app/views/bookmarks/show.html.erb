@@ -2,11 +2,14 @@
 
 <% @list.bookmarks.each do |bookmark| %>
   <p>
-    <%= bookmark.comment %>
+    Movie: <%= bookmark.movie.title %>
+    Comment: <%= bookmark.comment %>
   </p>
 <% end %>
 
 <%= link_to 'New Bookmark' , new_list_bookmark_path(@list), class: 'btn btn-primary' %>
+
+
 <br>
 <br>
 

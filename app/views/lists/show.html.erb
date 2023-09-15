@@ -1,11 +1,14 @@
 <h1><%= @list.name.upcase %></h1>
 
-<% @list.bookmarks.each do |bookmark| %>
-  <p>
-    <%= bookmark.comment %>
-    <%# <%= link_to 'Delete', list_bookmark_path(bookmark), method: :delete, data: { confirm: 'Are you sure?' } %> 
+<% @list.movies.each do |movie| %>
+<% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+  <div>
+    <strong><p><%= movie.title %></p></strong>
+    <small><p><%= movie.overview %></p></small>
+    <small><p><%= bookmark.comment %></p></small>
 
-  </p>
+    <%= link_to 'Delete', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this bookmark?' } %>
+  </div>
 <% end %>
 
 <%= link_to 'New Bookmark' , new_list_bookmark_path(@list), class: 'btn btn-primary' %>
