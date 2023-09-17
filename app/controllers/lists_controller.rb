@@ -7,6 +7,8 @@ class ListsController < ApplicationController
 
   def show
     @list = List.find(params[:id])
+    @list = List.includes(:reviews).find(params[:id])
+    end
   end
 
   def new
@@ -37,4 +39,3 @@ class ListsController < ApplicationController
   def list_params
     params.require(:list).permit(:name, :photo)
   end
-end

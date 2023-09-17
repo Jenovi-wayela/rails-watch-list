@@ -1,4 +1,8 @@
 class ReviewsController < ApplicationController
+  def new
+    @list = List.new
+  end
+
   def create
     @review = Review.new(review_params)
     @list = List.find(params[:list_id])

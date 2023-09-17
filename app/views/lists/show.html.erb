@@ -3,7 +3,7 @@
 <% if @list.photo.attached? %>
   <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
 <% else %>
-  <%= image_tag 'minh-pham-lB9ylP8e9Sg-unsplash.jpg', height: 300, width: 400, alt: 'Default Image' %>
+  <%= cl_image_tag 'georgia-vagim-ny-lHmsHYHk-unsplash_mmpxu8', width: 1500, height: 300, crop: :fill, alt: 'Default Image' %>
 <% end %>
 
 <% @list.movies.each do |movie| %>
@@ -12,7 +12,7 @@
     <strong><p><%= movie.title %></p></strong>
     <small><p><%= movie.overview %></p></small>
     <small><p><%= bookmark.comment %></p></small>
-    <%= link_to 'Delete', bookmark_path(bookmark), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Delete this bookmark?' } %>
+    <%= link_to 'Delete bookmark', bookmark_path(bookmark), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Delete this bookmark?' } %>
   </div>
 <% end %>
 <br>
@@ -26,4 +26,14 @@
 </div>
 <br>
 
-<%# <%= link_to 'Delete List', lists_path(@list), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this list?', turbo_confirm_modal: true }, class: 'btn btn-danger' %> 
+<h4>Reviews</h4>
+<% @list.reviews.each do |review| %>
+  <div class="review">
+    <%# <p><%= review.content %></p>
+  </div>
+<% end %>
+
+<%= simple_form_for [@list, Review.new] do |form| %>
+  <%= form.input :content, placeholder: 'Add a review', as: :text, input_html: { rows: 4 } %>
+  <%= form.button :submit, 'Submit Review', class: 'btn btn-success' %>
+  <% end %>

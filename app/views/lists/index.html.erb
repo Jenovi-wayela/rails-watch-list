@@ -1,13 +1,13 @@
 <h1>All lists</h1>
 
-<%= cl_image_tag("a0dju7onceejtvc6lbq4",
-      width: 400, height: 300, crop: :fill) %>
-<ul>
+<%= cl_image_tag("jakob-owens-CiUR8zISX60-unsplash_zctg3f", width: 1500, height: 300, crop: :fill) %>
+
   <% @lists.each do |list| %>
     <li><%= link_to list.name.capitalize, list_path(list) %></li>
   <% end %>
 </ul>
 
 
-
+<div>
 <%=link_to "Create a new list", new_list_path, class: 'btn btn-primary'%>
+</div>
