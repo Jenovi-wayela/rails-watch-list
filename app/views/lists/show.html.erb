@@ -1,29 +1,29 @@
 <h1><%= @list.name.upcase %></h1>
 
-<% @list.movies.each do |movie| %>
-<% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
-<%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
-
 <% if @list.photo.attached? %>
   <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
 <% else %>
-  <%= image_tag 'h2egjfuep3jevvtbcnpl', height: 300, width: 400, alt: 'Default Image' %>
-  <p>No photo available.</p>
+  <%= image_tag 'minh-pham-lB9ylP8e9Sg-unsplash.jpg', height: 300, width: 400, alt: 'Default Image' %>
 <% end %>
 
-
+<% @list.movies.each do |movie| %>
+  <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
   <div>
     <strong><p><%= movie.title %></p></strong>
     <small><p><%= movie.overview %></p></small>
     <small><p><%= bookmark.comment %></p></small>
-
-
-    <%= link_to 'Delete', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this bookmark?' } %>
+    <%= link_to 'Delete', bookmark_path(bookmark), class: 'btn btn-danger', data: { turbo_method: :delete, turbo_confirm: 'Delete this bookmark?' } %>
   </div>
 <% end %>
+<br>
+<div>
 
 <%= link_to 'New Bookmark' , new_list_bookmark_path(@list), class: 'btn btn-primary' %>
 <br>
 <br>
 
 <%= link_to 'Back to Lists', lists_path, class: 'btn btn-primary' %>
+</div>
+<br>
+
+<%# <%= link_to 'Delete List', lists_path(@list), method: :delete, data: { turbo_confirm: 'Are you sure you want to delete this list?', turbo_confirm_modal: true }, class: 'btn btn-danger' %> 
