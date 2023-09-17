@@ -2,7 +2,7 @@
 
 <%= simple_form_for(@list) do |form| %>
   <%= form.input :name, label: 'List Name' %>
-
+    <%= form.input :photo, as: :file %>
   <%= form.button :submit, class: 'btn btn-primary' %>
 <% end %>
 

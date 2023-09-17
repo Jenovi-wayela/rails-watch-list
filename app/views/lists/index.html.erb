@@ -1,8 +1,13 @@
 <h1>All lists</h1>
+
+<%= cl_image_tag("a0dju7onceejtvc6lbq4",
+      width: 400, height: 300, crop: :fill) %>
 <ul>
   <% @lists.each do |list| %>
     <li><%= link_to list.name.capitalize, list_path(list) %></li>
   <% end %>
 </ul>
+
+
 
 <%=link_to "Create a new list", new_list_path, class: 'btn btn-primary'%>

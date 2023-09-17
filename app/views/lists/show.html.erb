@@ -2,10 +2,21 @@
 
 <% @list.movies.each do |movie| %>
 <% bookmark = Bookmark.find_by(list: @list, movie: movie) %>
+<%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+
+<% if @list.photo.attached? %>
+  <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+<% else %>
+  <%= image_tag 'h2egjfuep3jevvtbcnpl', height: 300, width: 400, alt: 'Default Image' %>
+  <p>No photo available.</p>
+<% end %>
+
+
   <div>
     <strong><p><%= movie.title %></p></strong>
     <small><p><%= movie.overview %></p></small>
     <small><p><%= bookmark.comment %></p></small>
+
 
     <%= link_to 'Delete', bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: 'Delete this bookmark?' } %>
   </div>

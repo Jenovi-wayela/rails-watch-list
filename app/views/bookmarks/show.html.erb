@@ -1,10 +1,15 @@
 <h1><%= @list.name.upcase %></h1>
 
 <% @list.bookmarks.each do |bookmark| %>
+
+<%# <%= cl_image_tag @list.photo.key, height: 300, width: 400, crop: :fill %>
+
   <p>
     Movie: <%= bookmark.movie.title %>
     Comment: <%= bookmark.comment %>
   </p>
+
+
 <% end %>
 
 <%= link_to 'New Bookmark' , new_list_bookmark_path(@list), class: 'btn btn-primary' %>
